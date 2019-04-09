@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="horizontal"
+    android:weightSum="100">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/posterImage"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="91dp"
+            android:padding="@dimen/cardview_default_elevation" />
+
+        <TextView
+            android:id="@+id/movieNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/posterImage"
+            android:layout_margin="16dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/movieOverviewText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movieVoteAverageText"
+            android:layout_margin="16dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/movieReleaseDateText"
+            android:layout_width="365dp"
+            android:layout_height="33dp"
+            android:layout_below="@+id/movieNameText"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="14dp"
+            android:padding="5dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:text="@string/release_date"/>
+
+        <TextView
+            android:id="@+id/movieVoteAverageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movieReleaseDateText"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="18dp"
+            android:padding="5dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:text="@string/vote"/>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/favorite_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="18dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/heart" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/trailerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/favorite_button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="17dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/trailer" />
+
+
+    </RelativeLayout>
+
+
+</ScrollView>
