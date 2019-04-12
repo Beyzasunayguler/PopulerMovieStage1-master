@@ -47,7 +47,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        database =Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database_name").allowMainThreadQueries().build();
+        database =AppDatabase.getDatabase(this.getApplication());
 
         movieNameText = (TextView) findViewById(R.id.movieNameText);
         movieReleaseDateText = (TextView) findViewById(R.id.movieReleaseDateText);

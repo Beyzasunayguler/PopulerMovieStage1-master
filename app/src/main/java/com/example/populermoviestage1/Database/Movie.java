@@ -17,7 +17,7 @@ public class Movie implements Parcelable {
     @ColumnInfo(name = "release_date")
     public String mReleaseDay;
     @ColumnInfo(name = "vote_average")
-    public double mVoteAverage;
+    public Float mVoteAverage;
     @ColumnInfo(name = "poster_path")
     public String mPosterPath;
     @ColumnInfo(name = "movie_overview")
@@ -28,12 +28,12 @@ public class Movie implements Parcelable {
         mId = in.readInt();
         mMovieTitle = in.readString();
         mReleaseDay = in.readString();
-        mVoteAverage = in.readDouble();
+        mVoteAverage = in.readFloat();
         mOverview = in.readString();
         mPosterPath = in.readString();
     }
 
-    public Movie(int mId, String mMovieTitle, String mReleaseDay, double mVoteAverage, String mPosterPath, String mOverview) {
+    public Movie(int mId, String mMovieTitle, String mReleaseDay, float mVoteAverage, String mPosterPath, String mOverview) {
         this.mId = mId;
         this.mMovieTitle = mMovieTitle;
         this.mReleaseDay = mReleaseDay;
@@ -82,11 +82,11 @@ public class Movie implements Parcelable {
         this.mReleaseDay = mReleaseDay;
     }
 
-    public void setmVoteAverage(double mVoteAverage) {
+    public void setmVoteAverage(float mVoteAverage) {
         this.mVoteAverage = mVoteAverage;
     }
 
-    public Double getmVoteAverage() {
+    public Float getmVoteAverage() {
         return mVoteAverage;
     }
 
@@ -113,7 +113,7 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
-        parcel.writeDouble(mVoteAverage);
+        parcel.writeFloat(mVoteAverage);
         parcel.writeInt(mId);
         parcel.writeString(mOverview);
         parcel.writeString(mPosterPath);

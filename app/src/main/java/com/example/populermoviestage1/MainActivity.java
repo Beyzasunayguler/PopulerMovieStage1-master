@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //setupViewHolder();
 
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -50,24 +50,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    /*
-    private void setupViewHolder() {
-        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        viewModel.getFavoriteMovies().observe(this, new Observer<List<Movie>>() {
-            @Override
-            public void onChanged(@Nullable List<Movie> movies) {
-                if (movies==null) {
-                    Toast.makeText(getApplicationContext(), "Add Favorite Movie!", Toast.LENGTH_SHORT).show();
-                } else {
-
-                }
-
-            }
-        });
-    }
-
-
-*/
 
     public static class PlaceholderFragment extends Fragment {
 
@@ -75,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         private RecyclerView mRecyclerView;
         private MovieAdapter movieAdapter;
+        private FavouriteAdapter favouriteAdapter;
         private ProgressBar loadingBar;
 
         public PlaceholderFragment() {
@@ -100,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             mRecyclerView.setLayoutManager(gridLayoutManager);
             mRecyclerView.setHasFixedSize(true);
             movieAdapter = new MovieAdapter();
-            mRecyclerView.setAdapter(movieAdapter);
+            favouriteAdapter=new FavouriteAdapter();
             MInterface mInterface = ApiClient.getClient().create(MInterface.class);
 
 
@@ -111,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<MovieData> call, Response<MovieData> response) {
                             movieAdapter.setMovieData(response.body());
+                            mRecyclerView.setAdapter(movieAdapter);
                             loadingBar.setVisibility(View.GONE);
                         }
 
@@ -127,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<MovieData> call, Response<MovieData> response) {
                             movieAdapter.setMovieData(response.body());
+                            mRecyclerView.setAdapter(movieAdapter);
                             loadingBar.setVisibility(View.GONE);
                         }
 
@@ -138,10 +123,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    AppDatabase database = Room.databaseBuilder(getContext(), AppDatabase.class, "database_name").allowMainThreadQueries().build();
-                    loadingBar.setVisibility(View.GONE);
                     MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
+                    List<Movie> movieList = viewModel.getFavoriteMovies();
+                    favouriteAdapter.setMovie(movieList);
+                    mRecyclerView.setAdapter(favouriteAdapter);
+                    loadingBar.setVisibility(View.GONE);
                 }
 
             }
@@ -151,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
 
