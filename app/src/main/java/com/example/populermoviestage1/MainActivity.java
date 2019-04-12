@@ -140,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     AppDatabase database = Room.databaseBuilder(getContext(), AppDatabase.class, "database_name").allowMainThreadQueries().build();
                     loadingBar.setVisibility(View.GONE);
+                    MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
                 }
 
             }

@@ -24,6 +24,4 @@ public interface MovieDao {
     void deleteMovie(Movie movie);
 
 
-
-
 }
