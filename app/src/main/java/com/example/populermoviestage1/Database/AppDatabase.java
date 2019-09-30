@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import com.example.populermoviestage1.MainActivity;
+
 
 @Database(entities = {Movie.class}, version = 1, exportSchema = false)
 
